@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "src/**/*"
+      - "tests/**/*"
+      - ".github/workflows/*.yaml"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "src/**/*"
+      - "tests/**/*"
+      - ".github/workflows/*.yaml"
+
+jobs:
+  check-formatting:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check formatting
+        run: dotnet format --verify-no-changes --severity error
+
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+    env:
+      OS: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Print debug info
+        run: dotnet --info
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --no-restore --logger "GitHubActions" --collect:"XPlat Code Coverage;Format=opencover"
