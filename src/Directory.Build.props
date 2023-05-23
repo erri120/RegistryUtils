@@ -1,0 +1,38 @@
+<Project>
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+    <PropertyGroup>
+        <Authors>erri120</Authors>
+
+        <PackageReadmeFile>docs\README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+        <PackageProjectUrl>https://github.com/erri120/RegistryUtils</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/erri120/RegistryUtils.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+        <!-- https://github.com/dotnet/sourcelink/tree/main/docs#publishrepositoryurl -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+        <!-- https://github.com/dotnet/sourcelink/tree/main/docs#embeduntrackedsources -->
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <IsTrimmable>true</IsTrimmable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="docs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
+    </ItemGroup>
+</Project>
