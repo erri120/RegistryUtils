@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    </ItemGroup>
+    
+    <PropertyGroup>
+        <DefineConstants>$(DefineConstants);NETESCAPADES_ENUMGENERATORS_EMBED_ATTRIBUTES</DefineConstants>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="NetEscapades.EnumGenerators" Version="1.0.0-beta07" PrivateAssets="all" ExcludeAssets="compile;runtime" />
+    </ItemGroup>
+    
+    <PropertyGroup>
+        <InternalsVisibleTo>RegistryUtils.Core.Tests</InternalsVisibleTo>
+    </PropertyGroup>
+</Project>

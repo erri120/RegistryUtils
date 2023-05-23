@@ -4,4 +4,10 @@
     <PropertyGroup>
         <ImplicitUsings>true</ImplicitUsings>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="../Usings.cs">
+            <Link>Usings.cs</Link>
+        </Compile>
+    </ItemGroup>
 </Project>
