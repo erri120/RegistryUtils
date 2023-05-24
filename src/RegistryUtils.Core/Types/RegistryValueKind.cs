@@ -10,6 +10,9 @@ namespace RegistryUtils.Core.Types;
 /// Represents the data types to use when storing values in the registry,
 /// or identifies the data type of a value in the registry.
 /// </summary>
+/// <remarks>
+/// This enumeration type mirrors <see cref="Microsoft.Win32.RegistryValueKind"/>.
+/// </remarks>
 [PublicAPI]
 [SuppressMessage(
     "ReSharper",
