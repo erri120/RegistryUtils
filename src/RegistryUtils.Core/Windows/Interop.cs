@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using RegistryUtils.Core.Types;
 using MSRegistryHive = Microsoft.Win32.RegistryHive;
@@ -25,8 +27,9 @@ public static class Interop
         Justification = $"{nameof(MSRegistryHive)} can be used on all platforms.")]
     public static MSRegistryHive Convert(RegistryHive hive)
     {
-        var value = (int)hive;
-        return (MSRegistryHive)value;
+        if (!RegistryHiveExtensions.IsDefined(hive))
+            throw new ArgumentOutOfRangeException(nameof(hive), hive, $"The provided {nameof(RegistryHive)} value is not valid!");
+        return ConvertCore(hive);
     }
 
     /// <summary>
@@ -41,8 +44,9 @@ public static class Interop
         Justification = $"{nameof(MSRegistryValueKind)} can be used on all platforms.")]
     public static MSRegistryValueKind Convert(RegistryValueKind valueKind)
     {
-        var value = (int)valueKind;
-        return (MSRegistryValueKind)value;
+        if (!RegistryValueKindExtensions.IsDefined(valueKind))
+            throw new ArgumentOutOfRangeException(nameof(valueKind), valueKind, $"The provided {nameof(RegistryHive)} value is not valid!");
+        return ConvertCore(valueKind);
     }
 
     /// <summary>
@@ -56,6 +60,28 @@ public static class Interop
         "CA1416",
         Justification = $"{nameof(MSRegistryView)} can be used on all platforms.")]
     public static MSRegistryView Convert(RegistryView view)
+    {
+        if (!RegistryViewExtensions.IsDefined(view))
+            throw new ArgumentOutOfRangeException(nameof(view), view, $"The provided {nameof(RegistryHive)} value is not valid!");
+        return ConvertCore(view);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static MSRegistryHive ConvertCore(RegistryHive hive)
+    {
+        var value = (int)hive;
+        return (MSRegistryHive)value;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static MSRegistryValueKind ConvertCore(RegistryValueKind hive)
+    {
+        var value = (int)hive;
+        return (MSRegistryValueKind)value;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static MSRegistryView ConvertCore(RegistryView view)
     {
         var value = (int)view;
         return (MSRegistryView)value;

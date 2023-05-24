@@ -9,6 +9,8 @@ namespace RegistryUtils.Core.Tests.Windows;
 
 public class InteropTests
 {
+    #region RegistryHive
+
     [Theory]
     [MemberData(nameof(TestValues_ConvertRegistryHive))]
     [UnconditionalSuppressMessage(
@@ -19,6 +21,15 @@ public class InteropTests
     {
         var actualOutput = Interop.Convert(input);
         actualOutput.Should().Be(expectedOutput);
+    }
+
+    [Fact]
+    public void Test_ConvertRegistryHive_NotDefined()
+    {
+        Action act = () => Interop.Convert((RegistryHive)1337);
+        act
+            .Should()
+            .ThrowExactly<ArgumentOutOfRangeException>();
     }
 
     [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -36,6 +47,10 @@ public class InteropTests
         new object[] { RegistryHive.CurrentConfig, MSRegistryHive.CurrentConfig },
     };
 
+    #endregion
+
+    #region RegistryValueKind
+
     [Theory]
     [MemberData(nameof(TestValues_ConvertRegistryValueKind))]
     [UnconditionalSuppressMessage(
@@ -46,6 +61,15 @@ public class InteropTests
     {
         var actualOutput = Interop.Convert(input);
         actualOutput.Should().Be(expectedOutput);
+    }
+
+    [Fact]
+    public void Test_ConvertRegistryValueKind_NotDefined()
+    {
+        Action act = () => Interop.Convert((RegistryValueKind)1337);
+        act
+            .Should()
+            .ThrowExactly<ArgumentOutOfRangeException>();
     }
 
     [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -65,6 +89,10 @@ public class InteropTests
         new object[] { RegistryValueKind.QWord, MSRegistryValueKind.QWord },
     };
 
+    #endregion
+
+    #region RegistryView
+
     [Theory]
     [MemberData(nameof(TestValues_ConvertRegistryView))]
     [UnconditionalSuppressMessage(
@@ -75,6 +103,15 @@ public class InteropTests
     {
         var actualOutput = Interop.Convert(input);
         actualOutput.Should().Be(expectedOutput);
+    }
+
+    [Fact]
+    public void Test_ConvertRegistryView_NotDefined()
+    {
+        Action act = () => Interop.Convert((RegistryView)1337);
+        act
+            .Should()
+            .ThrowExactly<ArgumentOutOfRangeException>();
     }
 
     [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -88,4 +125,6 @@ public class InteropTests
         new object[] { RegistryView.Registry64, MSRegistryView.Registry64 },
         new object[] { RegistryView.Registry32, MSRegistryView.Registry32 },
     };
+
+    #endregion
 }
