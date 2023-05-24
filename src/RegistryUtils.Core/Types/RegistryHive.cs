@@ -24,7 +24,7 @@ public enum RegistryHive : int
     /// Represents the <c>HKEY_CLASSES_ROOT</c> base key.
     /// </summary>
     /// <remarks>
-    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.ClassesRoot"/> and has the value
+    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.ClassesRoot"/> and has the
     /// 32-bit integer value <c>0x80000000</c> or <c>-2147483648</c>.
     /// </remarks>
     [Description("HKEY_CLASSES_ROOT")]
@@ -34,7 +34,7 @@ public enum RegistryHive : int
     /// Represents the <c>HKEY_CURRENT_USER</c> base key.
     /// </summary>
     /// <remarks>
-    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.CurrentUser"/> and has the value
+    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.CurrentUser"/> and has the
     /// 32-bit integer value <c>0x80000001</c> or <c>-2147483647</c>.
     /// </remarks>
     [Description("HKEY_CURRENT_USER")]
@@ -44,7 +44,7 @@ public enum RegistryHive : int
     /// Represents the <c>HKEY_LOCAL_MACHINE</c> base key.
     /// </summary>
     /// <remarks>
-    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.LocalMachine"/> and has the value
+    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.LocalMachine"/> and has the
     /// 32-bit integer value <c>0x80000002</c> or <c>-2147483646</c>.
     /// </remarks>
     [Description("HKEY_LOCAL_MACHINE")]
@@ -54,7 +54,7 @@ public enum RegistryHive : int
     /// Represents the <c>HKEY_USERS</c> base key.
     /// </summary>
     /// <remarks>
-    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.Users"/> and has the value
+    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.Users"/> and has the
     /// 32-bit integer value <c>0x80000003</c> or <c>-2147483645</c>.
     /// </remarks>
     [Description("HKEY_USERS")]
@@ -64,7 +64,7 @@ public enum RegistryHive : int
     /// Represents the <c>HKEY_PERFORMANCE_DATA</c> base key.
     /// </summary>
     /// <remarks>
-    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.PerformanceData"/> and has the value
+    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.PerformanceData"/> and has the
     /// 32-bit integer value <c>0x80000004</c> or <c>-2147483644</c>.
     /// </remarks>
     [Description("HKEY_PERFORMANCE_DATA")]
@@ -74,7 +74,7 @@ public enum RegistryHive : int
     /// Represents the <c>HKEY_CURRENT_CONFIG</c> base key.
     /// </summary>
     /// <remarks>
-    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.CurrentConfig"/> and has the value
+    /// This value mirrors <see cref="Microsoft.Win32.RegistryHive.CurrentConfig"/> and has the
     /// 32-bit integer value <c>0x80000005</c> or <c>-2147483643</c>.
     /// </remarks>
     [Description("HKEY_CURRENT_CONFIG")]
