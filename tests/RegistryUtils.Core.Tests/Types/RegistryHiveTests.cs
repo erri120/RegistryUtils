@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using RegistryUtils.Core.Types;
 using MSRegistryHive = Microsoft.Win32.RegistryHive;
 
-namespace RegistryUtils.Core.Tests;
+namespace RegistryUtils.Core.Tests.Types;
 
 public class RegistryHiveTests
 {
@@ -51,8 +51,8 @@ public class RegistryHiveTests
         Justification = $"{nameof(MSRegistryHive)} can be used on all platforms.")]
     public void Test_MirrorsOriginal()
     {
-        var currentValues = RegistryHiveExtensions.GetValues();
-        var originalValues = Enum.GetValues<MSRegistryHive>();
+        var currentValues = RegistryHiveExtensions.GetValues().OrderBy(x => (int)x);
+        var originalValues = Enum.GetValues<MSRegistryHive>().OrderBy(x => (int)x);
 
         currentValues.Should().Equal(originalValues, (currentValue, originalValue) =>
         {
