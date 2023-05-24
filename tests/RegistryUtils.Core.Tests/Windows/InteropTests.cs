@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using RegistryUtils.Core.Types;
 using RegistryUtils.Core.Windows;
 using MSRegistryHive = Microsoft.Win32.RegistryHive;
+using MSRegistryValueKind = Microsoft.Win32.RegistryValueKind;
 
 namespace RegistryUtils.Core.Tests.Windows;
 
@@ -32,5 +33,34 @@ public class InteropTests
         new object[] { RegistryHive.Users, MSRegistryHive.Users },
         new object[] { RegistryHive.PerformanceData, MSRegistryHive.PerformanceData },
         new object[] { RegistryHive.CurrentConfig, MSRegistryHive.CurrentConfig },
+    };
+
+    [Theory]
+    [MemberData(nameof(TestValues_ConvertRegistryValueKind))]
+    [UnconditionalSuppressMessage(
+        "",
+        "CA1416",
+        Justification = $"{nameof(MSRegistryValueKind)} can be used on all platforms.")]
+    public void Test_ConvertRegistryValueKind(RegistryValueKind input, MSRegistryValueKind expectedOutput)
+    {
+        var actualOutput = Interop.Convert(input);
+        actualOutput.Should().Be(expectedOutput);
+    }
+
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [UnconditionalSuppressMessage(
+        "",
+        "CA1416",
+        Justification = $"{nameof(MSRegistryValueKind)} can be used on all platforms.")]
+    public static IEnumerable<object[]> TestValues_ConvertRegistryValueKind => new[]
+    {
+        new object[] { RegistryValueKind.None, MSRegistryValueKind.None },
+        new object[] { RegistryValueKind.Unknown, MSRegistryValueKind.Unknown },
+        new object[] { RegistryValueKind.String, MSRegistryValueKind.String },
+        new object[] { RegistryValueKind.ExpandString, MSRegistryValueKind.ExpandString },
+        new object[] { RegistryValueKind.Binary, MSRegistryValueKind.Binary },
+        new object[] { RegistryValueKind.DWord, MSRegistryValueKind.DWord },
+        new object[] { RegistryValueKind.MultiString, MSRegistryValueKind.MultiString },
+        new object[] { RegistryValueKind.QWord, MSRegistryValueKind.QWord },
     };
 }

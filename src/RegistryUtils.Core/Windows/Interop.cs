@@ -1,8 +1,9 @@
 using JetBrains.Annotations;
 using RegistryUtils.Core.Types;
+using MSRegistryHive = Microsoft.Win32.RegistryHive;
+using MSRegistryValueKind = Microsoft.Win32.RegistryValueKind;
 
 namespace RegistryUtils.Core.Windows;
-using MSRegistryHive = Microsoft.Win32.RegistryHive;
 
 /// <summary>
 /// Helper methods for converting values used in this library, to values used in <c>Microsoft.Win32.Registry</c>.
@@ -20,5 +21,17 @@ public static class Interop
     {
         var value = (int)hive;
         return (MSRegistryHive)value;
+    }
+
+    /// <summary>
+    /// Converts a <see cref="RegistryValueKind"/> from this library to a
+    /// <see cref="Microsoft.Win32.RegistryValueKind"/> from <c>Microsoft.Win32.Registry</c>.
+    /// </summary>
+    /// <param name="valueKind"></param>
+    /// <returns></returns>
+    public static MSRegistryValueKind Convert(RegistryValueKind valueKind)
+    {
+        var value = (int)valueKind;
+        return (MSRegistryValueKind)value;
     }
 }
